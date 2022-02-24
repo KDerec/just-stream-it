@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Just Stream it</title>
+        <link rel="stylesheet" href="styles/normalize.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <script scr="script/main.js"></script>
     </head>
+
     <body>
-        <div class="the-best-movie">
-            <h1>best movie title</h1>
-            <button name="play">Play</button>
-            <p>Movie resum text</p>
-        </div>
-        <div class="others-best-movies">
-            <h2>Films les mieux notés</h2>
-            <button name="left">Left</button>
-            <button name="right">Right</button>
-        </div>
-        <div class="best-movie-by-categories">
-            <h2>Catégorie 1</h2>
-            <h2>Catégorie 2</h2>
-            <h2>Catégorie 3</h2>
-        </div>
+        <header class="header">
+            <nav class="navbar">
+                <a href="/">
+                    <img src="https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png" alt="JustStreamIt" class="headerLogo">
+                </a>
+                <ul class="nav-links">
+                    <div class="menu">
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/">Catégories</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <article class="the-best-movie">
+                <h1>best movie title</h1>
+                <button name="play">Play</button>
+                <p>Movie resum text</p>
+                <img src="#" alt="best-movie-thumbnail">
+            </article>
+            <article class="others-best-movies">
+                <h2>Films les mieux notés</h2>
+                <button name="left">Left</button>
+                <button name="right">Right</button>
+            </article>
+            <article class="best-movie-by-categories">
+                <section class="category-1">
+                    <h3>Catégorie 1</h3>
+                </section>
+                <section class="category-2"></section>
+                    <h3>Catégorie 2</h3>
+                </section>
+                <section class="category-3"></section>
+                    <h3>Catégorie 3</h3>
+                </section>
+            </article>
+        </main>
     </body>
 </html>
