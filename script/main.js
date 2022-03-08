@@ -1,4 +1,6 @@
 const bestImdbScoreFilterUrl = "http://localhost:8000/api/v1/titles/?year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains="
+const genreListUrl = "http://localhost:8000/api/v1/genres/"
+const genreList = []
 
 
 async function manageBestMovie() {
@@ -56,23 +58,41 @@ async function displayBestMovieInformation(bestMovieUrl){
     bestMovieImg.src = data.image_url  
 }
 
+
+async function getNextPageOfGenreList(url){
+    const response = await fetch(url)
+    const data = await response.json()
+    
+    if (data.next){
+        await getAllGenreOfThePage(data.next)
+        await getNextPageOfGenreList(data.next)
     }
-    return list_of_best_movies
 }
 
 
-function getBestMovieByVotes(list_of_best_movies){
-    let max_votes = -1
-    for (let pas = 0; pas < list_of_best_movies.length; pas++){
-        let votes = list_of_best_movies[pas].votes
-        if (max_votes <= votes){
-            max_votes = votes
-            best_movie_url = list_of_best_movies[pas].url
-        }
+async function getAllGenreOfThePage(url){
+    const response = await fetch(url)
+    const data = await response.json()
+    for (pas = 0; pas < data.results.length; pas++){
+        genreList.push(data.results[pas].name)
     }
+}
+
+
+function createGenreList(){
+    for (pas = 0; pas < genreList.length; pas++){
+        let node = document.createElement("li")
+        let textNode = document.createTextNode(genreList[pas])
+        node.appendChild(textNode)
+        document.getElementById("genre-list").appendChild(node)
+    }
+}
 
 async function main(){
     await manageBestMovie()
+    await getAllGenreOfThePage(genreListUrl)
+    await getNextPageOfGenreList(genreListUrl)
+    createGenreList()
 }
 
 

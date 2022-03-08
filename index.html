@@ -4,21 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Just Stream it</title>
-        <link rel="stylesheet" href="styles/normalize.css">
+        <!-- <link rel="stylesheet" href="styles/normalize.css"> -->
         <link rel="stylesheet" href="styles/styles.css">
     </head>
 
     <body>
         <header class="header">
-            <nav class="navbar">
-                <a href="/">
-                    <img src="https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png" alt="Logo Just Stream It" class="headerLogo">
-                </a>
-                <ul class="nav-links">
-                    <div class="menu">
-                        <li><a href="/">Accueil</a></li>
-                        <li><a href="/">Catégories</a></li>
-                    </div>
+            <nav>
+                <div id="logo">Just Stream It</div>
+                <ul class="items-list">
+                    <li class="items">Accueil</li>
+                    <li class="items">Catégories
+                        <ul id="genre-list"></ul>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -37,13 +35,13 @@
             </article>
             <article class="best-movie-by-categories">
                 <section class="category-1">
-                    <h3>Catégorie 1</h3>
+                    <h3>Animation</h3>
                 </section>
                 <section class="category-2"></section>
-                    <h3>Catégorie 2</h3>
+                    <h3>Fantasy</h3>
                 </section>
                 <section class="category-3"></section>
-                    <h3>Catégorie 3</h3>
+                    <h3>Adventure</h3>
                 </section>
             </article>
         </main>
