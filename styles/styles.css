@@ -1,3 +1,20 @@
 html {
     font-family: Montserrat;
 }
+
+
+#carousel-items {
+    display: flex;
+    overflow-x: scroll;
+    padding: 1rem 0;
+    overflow: hidden;
+    list-style-type: none;
+    scroll-behavior: smooth;
+}
+.carousel-item {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    margin-left: 1rem;
+    scroll-snap-align: start;
+}
