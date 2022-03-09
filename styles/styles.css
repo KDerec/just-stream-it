@@ -2,8 +2,12 @@ html {
     font-family: Montserrat;
 }
 
-
+.carousel {
+    align-items: center;
+    display: flex;
+}
 #carousel-items {
+    position: relative;
     display: flex;
     overflow-x: scroll;
     padding: 1rem 0;
@@ -15,6 +19,29 @@ html {
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: auto;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     scroll-snap-align: start;
+}
+
+.carousel-item img {
+    height: 200px;
+    width: auto;
+    object-fit: scale-down;
+}
+
+#slideLeft, #slideRight {
+    background: #262626;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-size: 50px;
+    font-weight: bold;
+    transition: opacity 0.25s;
+    opacity: 0.1;
+    height: 200px;
+}
+
+#slideLeft:hover, #slideRight:hover {
+    opacity: 0.5;
 }
