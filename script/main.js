@@ -12,22 +12,21 @@ async function fetchDataFromUrl(url) {
 }
 
 
-async function manageBestMovie() {
-    data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
-    
-    let listOfBestMovies = getListOfBestMovie(data)
+async function getBestMovieUrl() {
+    let listOfBestMovies = await getListOfBestMovies()
     if (listOfBestMovies.length === 1){
         let bestMovieUrl = listOfBestMovies[0].url
-        displayBestMovieInformation(bestMovieUrl)
     }
     else {
         let bestMovieUrl = getTheBestMovieByVotes(listOfBestMovies)
-        displayBestMovieInformation(bestMovieUrl)
     }
+
+    return bestMovieUrl
 }
 
 
-function getListOfBestMovie(data){
+async function getListOfBestMovies(){
+    data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
     let listOfBestMovies = []
     let maxImdbScore = -1
     for (let pas = 0; pas < data.results.length; pas++){
@@ -131,7 +130,8 @@ function appendAllGenreInCategorieList(){
 }
 
 async function main(){
-    await manageBestMovie()
+    bestMovieUrl = await getBestMovieUrl()
+    displayBestMovieInformation(bestMovieUrl)
     await getAllGenreNameOfThePage(genreListUrl)
     await getNextPageOfGenreList(genreListUrl)
     appendAllGenreInCategorieList()
