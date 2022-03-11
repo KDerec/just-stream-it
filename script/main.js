@@ -16,12 +16,14 @@ async function getBestMovieUrl() {
     let listOfBestMovies = await getListOfBestMovies()
     if (listOfBestMovies.length === 1){
         let bestMovieUrl = listOfBestMovies[0].url
+
+        return bestMovieUrl
     }
     else {
         let bestMovieUrl = getTheBestMovieByVotes(listOfBestMovies)
-    }
 
-    return bestMovieUrl
+        return bestMovieUrl
+    }
 }
 
 
@@ -73,12 +75,12 @@ async function manageTopSevenBestMovies() {
     for (pas = 0; pas < 7; pas++){
         data = await fetchDataFromUrl(urlListOfTopSevenBestMovies[pas])
 
-        await createCarouselItem(data)
+        createCarouselItem(data)
 
 }
 
 
-async function createCarouselItem(data) {
+function createCarouselItem(data) {
     let node = document.createElement("li")
     let imageNode = document.createElement("img")
     imageNode.src = data.image_url
@@ -100,6 +102,7 @@ async function getUrlListOfTopSevenBestMovies(data) {
         next_page_data = await fetchDataFromUrl(data.next)
         getUrlListOfTopSevenBestMovies(next_page_data)
     }
+    let bestMovieUrl = await getBestMovieUrl()
     let BestMovieIndex = urlListOfTopSevenBestMovies.indexOf(bestMovieUrl)
     if (BestMovieIndex !== -1){
         urlListOfTopSevenBestMovies.splice(BestMovieIndex, 1)
