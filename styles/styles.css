@@ -22,6 +22,12 @@ html {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     scroll-snap-align: start;
+    transition: transform .2s;
+}
+
+.carousel-item:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .carousel-item img {

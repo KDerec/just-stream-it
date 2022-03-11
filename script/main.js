@@ -73,16 +73,19 @@ async function manageTopSevenBestMovies() {
     for (pas = 0; pas < 7; pas++){
         data = await fetchDataFromUrl(urlListOfTopSevenBestMovies[pas])
 
-        await displayTopSevenBestMovies(data.image_url)
+        await createCarouselItem(data)
 
 }
 
 
-async function displayTopSevenBestMovies(image_url) {
+async function createCarouselItem(data) {
     let node = document.createElement("li")
     let imageNode = document.createElement("img")
-    imageNode.src = image_url
+    imageNode.src = data.image_url
     imageNode.className = "carousel-item"
+    imageNode.addEventListener("click", function(){
+        console.log(data.url)
+    })
     node.appendChild(imageNode)
     document.getElementById("carousel-items").appendChild(node)
     }
