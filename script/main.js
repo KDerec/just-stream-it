@@ -97,6 +97,11 @@ async function getUrlListOfTopSevenBestMovies(data) {
         next_page_data = await fetchDataFromUrl(data.next)
         getUrlListOfTopSevenBestMovies(next_page_data)
     }
+    let BestMovieIndex = urlListOfTopSevenBestMovies.indexOf(bestMovieUrl)
+    if (BestMovieIndex !== -1){
+        urlListOfTopSevenBestMovies.splice(BestMovieIndex, 1)
+    }
+
     return urlListOfTopSevenBestMovies
 }
 
@@ -130,7 +135,7 @@ function appendAllGenreInCategorieList(){
 }
 
 async function main(){
-    bestMovieUrl = await getBestMovieUrl()
+    let bestMovieUrl = await getBestMovieUrl()
     displayBestMovieInformation(bestMovieUrl)
     await getAllGenreNameOfThePage(genreListUrl)
     await getNextPageOfGenreList(genreListUrl)
