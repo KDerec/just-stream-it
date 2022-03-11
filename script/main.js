@@ -3,9 +3,17 @@ const genreListUrl = "http://localhost:8000/api/v1/genres/"
 const genreList = []
 const urlListOfTopSevenBestMovies = []
 
+
+async function fetchDataFromUrl(url) {
+    let response = await fetch(url)
+    let data = await response.json()
+
+    return data
+}
+
+
 async function manageBestMovie() {
-    const response = await fetch(bestImdbScoreFilterUrl)
-    const data = await response.json()
+    data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
     
     let listOfBestMovies = getListOfBestMovie(data)
     if (listOfBestMovies.length === 1){
@@ -51,8 +59,8 @@ async function displayBestMovieInformation(bestMovieUrl){
     let bestMovieResume = document.getElementById("the-best-movie").getElementsByTagName("p")[0]
     let bestMovieImg = document.getElementById("best-movie-img")
 
-    const response = await fetch(bestMovieUrl)
-    const data = await response.json()
+    data = await fetchDataFromUrl(bestMovieUrl)
+
     bestMovieTitle.innerHTML = data.title
     bestMovieResume.innerHTML = data.description
     bestMovieImg.src = data.image_url  
@@ -60,12 +68,12 @@ async function displayBestMovieInformation(bestMovieUrl){
 
 
 async function manageTopSevenBestMovies() {
-    let response = await fetch(bestImdbScoreFilterUrl)
-    let data = await response.json()
+    data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
+
     let urlListOfTopSevenBestMovies = await getUrlListOfTopSevenBestMovies(data)
     for (pas = 0; pas < 7; pas++){
-        let response = await fetch(urlListOfTopSevenBestMovies[pas])
-        let data = await response.json()
+        data = await fetchDataFromUrl(urlListOfTopSevenBestMovies[pas])
+
         await displayTopSevenBestMovies(data.image_url)
 
 }
@@ -87,24 +95,15 @@ async function getUrlListOfTopSevenBestMovies(data) {
         urlListOfTopSevenBestMovies.push(data.results[pas].url)
     }
     if (urlListOfTopSevenBestMovies.length < 7){
-        let next_page_data = await getNextPageData(data.next)
+        next_page_data = await fetchDataFromUrl(data.next)
         getUrlListOfTopSevenBestMovies(next_page_data)
     }
     return urlListOfTopSevenBestMovies
 }
 
 
-async function getNextPageData(url){
-    let response = await fetch(url)
-    let data = await response.json()
-
-    return data
-}
-
-
 async function getNextPageOfGenreList(url) {
-    const response = await fetch(url)
-    const data = await response.json()
+    data = await fetchDataFromUrl(url)
     
     if (data.next){
         await getAllGenreNameOfThePage(data.next)
@@ -114,8 +113,8 @@ async function getNextPageOfGenreList(url) {
 
 
 async function getAllGenreNameOfThePage(url){
-    const response = await fetch(url)
-    const data = await response.json()
+    data = await fetchDataFromUrl(url)
+
     for (pas = 0; pas < data.results.length; pas++){
         genreList.push(data.results[pas].name)
     }
