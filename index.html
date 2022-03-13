@@ -9,13 +9,13 @@
     </head>
 
     <body>
-        <header class="header">
+        <header id="header">
             <nav>
                 <div id="logo">Just Stream It</div>
-                <ul class="items-list">
-                    <li class="items">Accueil</li>
-                    <li class="items">Catégories
-                        <ul id="genre-list"></ul>
+                <ul id="header-items-list">
+                    <li class="header-item">Accueil</li>
+                    <li class="header-item">Catégories
+                        <ul id="header-genres-list"></ul>
                     </li>
                 </ul>
             </nav>
@@ -24,31 +24,44 @@
         <main>
             <article id="the-best-movie">
                 <h1>Titre du meilleur film</h1>
-                <img src="" alt="Image du meilleur film", id="best-movie-img">
+                <img src="" alt="Image du meilleur film", id="the-best-movie-img">
                 <button name="play">Play</button>
-                <p>Descrition meilleur film</p>
+                <p>Descrition du meilleur film</p>
             </article>
-            <article class="others-best-movies">
+            <article id="others-best-movies">
                 <h2>Films les mieux notés</h2>
                     <section class="carousel">
-                        <button id="slideLeft" type="button"><</button>
-                        <ul id="carousel-items"></ul>
-                        <button id="slideRight" type="button">></button>
+                        <button id="slideLeftOthersBestMovies" type="button"><</button>
+                        <ul id="carousel-items-other-best-movies"></ul>
+                        <button id="slideRightOthersBestMovies" type="button">></button>
                     </section>
-                <ul class="best-movies-slider"></ul>
             </article>
-            <article class="best-movie-by-categories">
-                <section class="category-1">
-                    <h3>Animation</h3>
+            <article id="category-1">
+                <h3>Animation</h3>
+                <section class="carousel">
+                    <button id="slideLeftCategoryOne" type="button"><</button>
+                    <ul id="carousel-items-category-one"></ul>
+                    <button id="slideRightCategoryOne" type="button">></button>
                 </section>
-                <section class="category-2"></section>
-                    <h3>Fantasy</h3>
+            </article>
+            <article id="category-2">
+                <h3>Aventure</h3>
+                <section class="carousel">
+                    <button id="slideLeftCategoryTwo" type="button"><</button>
+                    <ul id="carousel-items-category-two"></ul>
+                    <button id="slideRightCategoryTwo" type="button">></button>
                 </section>
-                <section class="category-3"></section>
-                    <h3>Adventure</h3>
+            </article>
+            <article id="category-3">
+                <h3>Documentaire</h3>
+                <section class="carousel">
+                    <button id="slideLeftCategoryThree" type="button"><</button>
+                    <ul id="carousel-items-category-three"></ul>
+                    <button id="slideRightCategoryThree" type="button">></button>
                 </section>
             </article>
         </main>
         <script src="script/main.js"></script>
+        <script src="script/buttons.js"></script>
     </body>
 </html>

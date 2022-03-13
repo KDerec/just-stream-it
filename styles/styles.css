@@ -6,22 +6,20 @@ html {
     align-items: center;
     display: flex;
 }
-#carousel-items {
-    position: relative;
+
+#carousel-items-other-best-movies,
+#carousel-items-category-one,
+#carousel-items-category-two,
+#carousel-items-category-three {
     display: flex;
-    overflow-x: scroll;
     padding: 1rem 0;
     overflow: hidden;
     list-style-type: none;
     scroll-behavior: smooth;
 }
 .carousel-item {
-    flex-grow: 1;
-    flex-shrink: 0;
-    flex-basis: auto;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    scroll-snap-align: start;
     transition: transform .2s;
 }
 
@@ -30,13 +28,15 @@ html {
     cursor: pointer;
 }
 
-.carousel-item img {
-    height: 270px;
-    width: auto;
-    object-fit: scale-down;
-}
 
-#slideLeft, #slideRight {
+#slideLeftOthersBestMovies, 
+#slideRightOthersBestMovies,
+#slideLeftCategoryOne,
+#slideRightCategoryOne,
+#slideLeftCategoryTwo,
+#slideRightCategoryTwo,
+#slideLeftCategoryThree,
+#slideRightCategoryThree {
     background: #262626;
     border: 0;
     color: white;
@@ -48,6 +48,13 @@ html {
     height: 270px;
 }
 
-#slideLeft:hover, #slideRight:hover {
+#slideLeftOthersBestMovies:hover, 
+#slideRightOthersBestMovies:hover,
+#slideLeftCategoryOne:hover,
+#slideRightCategoryOne:hover,
+#slideLeftCategoryTwo:hover,
+#slideRightCategoryTwo:hover,
+#slideLeftCategoryThree:hover,
+#slideRightCategoryThree:hover {
     opacity: 0.5;
 }

@@ -58,7 +58,7 @@ function getTheBestMovieByVotes(listOfBestMovies){
 async function displayBestMovieInformation(bestMovieUrl){
     let bestMovieTitle = document.getElementById("the-best-movie").getElementsByTagName("h1")[0]
     let bestMovieResume = document.getElementById("the-best-movie").getElementsByTagName("p")[0]
-    let bestMovieImg = document.getElementById("best-movie-img")
+    let bestMovieImg = document.getElementById("the-best-movie-img")
 
     data = await fetchDataFromUrl(bestMovieUrl)
 
@@ -89,7 +89,7 @@ function createCarouselItem(data) {
         console.log(data.url)
     })
     node.appendChild(imageNode)
-    document.getElementById("carousel-items").appendChild(node)
+    document.getElementById("carousel-items-other-best-movies").appendChild(node)
     }
 }
 
@@ -136,7 +136,7 @@ function appendAllGenreInCategorieList(){
         let node = document.createElement("li")
         let textNode = document.createTextNode(genreList[pas])
         node.appendChild(textNode)
-        document.getElementById("genre-list").appendChild(node)
+        document.getElementById("header-genres-list").appendChild(node)
     }
 }
 
@@ -148,16 +148,6 @@ async function main(){
     appendAllGenreInCategorieList()
     await manageTopSevenBestMovies()
 }
-
-const buttonRight = document.getElementById('slideRight');
-const buttonLeft = document.getElementById('slideLeft');
-
-buttonRight.onclick = function () {
-  document.getElementById('carousel-items').scrollLeft += 200;
-};
-buttonLeft.onclick = function () {
-  document.getElementById('carousel-items').scrollLeft -= 200;
-};
 
 
 main()
