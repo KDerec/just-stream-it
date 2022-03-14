@@ -12,23 +12,23 @@ async function fetchDataFromUrl(url) {
 }
 
 
-async function getBestMovieUrl() {
+async function getTheBestMovieUrl() {
     let listOfBestMovies = await getListOfBestMovies()
     if (listOfBestMovies.length === 1){
-        let bestMovieUrl = listOfBestMovies[0].url
+        let theBestMovieUrl = listOfBestMovies[0].url
 
-        return bestMovieUrl
+        return theBestMovieUrl
     }
     else {
-        let bestMovieUrl = getTheBestMovieByVotes(listOfBestMovies)
+        let theBestMovieUrl = getTheBestMovieByVotes(listOfBestMovies)
 
-        return bestMovieUrl
+        return theBestMovieUrl
     }
 }
 
 
 async function getListOfBestMovies(){
-    data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
+    let data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
     let listOfBestMovies = []
     let maxImdbScore = -1
     for (let pas = 0; pas < data.results.length; pas++){
@@ -48,19 +48,19 @@ function getTheBestMovieByVotes(listOfBestMovies){
         let votes = listOfBestMovies[pas].votes
         if (maxVotes <= votes){
             maxVotes = votes
-            bestMovieUrl = listOfBestMovies[pas].url
+            var theBestMovieUrl = listOfBestMovies[pas].url
         }
     }
-    return bestMovieUrl
+    return theBestMovieUrl
 }
 
 
-async function displayBestMovieInformation(bestMovieUrl){
+async function displayBestMovieInformation(theBestMovieUrl){
     let bestMovieTitle = document.getElementById("the-best-movie").getElementsByTagName("h1")[0]
     let bestMovieResume = document.getElementById("the-best-movie").getElementsByTagName("p")[0]
     let bestMovieImg = document.getElementById("the-best-movie-img")
 
-    data = await fetchDataFromUrl(bestMovieUrl)
+    let data = await fetchDataFromUrl(theBestMovieUrl)
 
     bestMovieTitle.innerHTML = data.title
     bestMovieResume.innerHTML = data.description
@@ -69,11 +69,11 @@ async function displayBestMovieInformation(bestMovieUrl){
 
 
 async function manageTopSevenBestMovies() {
-    data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
+    let data = await fetchDataFromUrl(bestImdbScoreFilterUrl)
 
     let urlListOfTopSevenBestMovies = await getUrlListOfTopSevenBestMovies(data)
-    for (pas = 0; pas < 7; pas++){
-        data = await fetchDataFromUrl(urlListOfTopSevenBestMovies[pas])
+    for (let pas = 0; pas < 7; pas++){
+        let data = await fetchDataFromUrl(urlListOfTopSevenBestMovies[pas])
 
         createCarouselItem(data)
 
@@ -99,11 +99,11 @@ async function getUrlListOfTopSevenBestMovies(data) {
         urlListOfTopSevenBestMovies.push(data.results[pas].url)
     }
     if (urlListOfTopSevenBestMovies.length < 7){
-        next_page_data = await fetchDataFromUrl(data.next)
+        let next_page_data = await fetchDataFromUrl(data.next)
         getUrlListOfTopSevenBestMovies(next_page_data)
     }
-    let bestMovieUrl = await getBestMovieUrl()
-    let BestMovieIndex = urlListOfTopSevenBestMovies.indexOf(bestMovieUrl)
+    let theBestMovieUrl = await getTheBestMovieUrl()
+    let BestMovieIndex = urlListOfTopSevenBestMovies.indexOf(theBestMovieUrl)
     if (BestMovieIndex !== -1){
         urlListOfTopSevenBestMovies.splice(BestMovieIndex, 1)
     }
@@ -113,7 +113,7 @@ async function getUrlListOfTopSevenBestMovies(data) {
 
 
 async function getNextPageOfGenreList(url) {
-    data = await fetchDataFromUrl(url)
+    let data = await fetchDataFromUrl(url)
     
     if (data.next){
         await getAllGenreNameOfThePage(data.next)
@@ -123,16 +123,16 @@ async function getNextPageOfGenreList(url) {
 
 
 async function getAllGenreNameOfThePage(url){
-    data = await fetchDataFromUrl(url)
+    let data = await fetchDataFromUrl(url)
 
-    for (pas = 0; pas < data.results.length; pas++){
+    for (let pas = 0; pas < data.results.length; pas++){
         genreList.push(data.results[pas].name)
     }
 }
 
 
 function appendAllGenreInCategorieList(){
-    for (pas = 0; pas < genreList.length; pas++){
+    for (let pas = 0; pas < genreList.length; pas++){
         let node = document.createElement("li")
         let textNode = document.createTextNode(genreList[pas])
         node.appendChild(textNode)
@@ -141,8 +141,8 @@ function appendAllGenreInCategorieList(){
 }
 
 async function main(){
-    let bestMovieUrl = await getBestMovieUrl()
-    displayBestMovieInformation(bestMovieUrl)
+    let theBestMovieUrl = await getTheBestMovieUrl()
+    displayBestMovieInformation(theBestMovieUrl)
     await getAllGenreNameOfThePage(genreListUrl)
     await getNextPageOfGenreList(genreListUrl)
     appendAllGenreInCategorieList()
