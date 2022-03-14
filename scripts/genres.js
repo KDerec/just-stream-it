@@ -4,10 +4,10 @@ import {fetchDataFromUrl} from './dataFetcher.js'
 const genreList = []
 
 
-export async function manageCategory(url) {
+export async function manageGenre(url) {
     await getAllGenreNameOfThePage(url)
     await getNextPageOfGenreList(url)
-    appendAllGenreInCategorieList()
+    appendAllGenreInHtml()
 }
 
 
@@ -30,7 +30,7 @@ async function getAllGenreNameOfThePage(url){
 }
 
 
-function appendAllGenreInCategorieList(){
+function appendAllGenreInHtml(){
     for (let pas = 0; pas < genreList.length; pas++){
         let node = document.createElement("li")
         let textNode = document.createTextNode(genreList[pas])
