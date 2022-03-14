@@ -7,10 +7,7 @@ html {
     display: flex;
 }
 
-#carousel-items-other-best-movies,
-#carousel-items-category-one,
-#carousel-items-category-two,
-#carousel-items-category-three {
+.carousel-items {
     display: flex;
     padding: 1rem 0;
     overflow: hidden;
@@ -29,14 +26,7 @@ html {
 }
 
 
-#slideLeftOthersBestMovies, 
-#slideRightOthersBestMovies,
-#slideLeftCategoryOne,
-#slideRightCategoryOne,
-#slideLeftCategoryTwo,
-#slideRightCategoryTwo,
-#slideLeftCategoryThree,
-#slideRightCategoryThree {
+.carousel-button {
     background: #262626;
     border: 0;
     color: white;
@@ -48,13 +38,6 @@ html {
     height: 270px;
 }
 
-#slideLeftOthersBestMovies:hover, 
-#slideRightOthersBestMovies:hover,
-#slideLeftCategoryOne:hover,
-#slideRightCategoryOne:hover,
-#slideLeftCategoryTwo:hover,
-#slideRightCategoryTwo:hover,
-#slideLeftCategoryThree:hover,
-#slideRightCategoryThree:hover {
+.carousel-button:hover {
     opacity: 0.5;
 }
