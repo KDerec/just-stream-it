@@ -1,9 +1,9 @@
 import {fetchDataFromUrl} from './dataFetcher.js'
+import {createCarouselItemFromUrl} from './carousel.js'
 
-
-export async function manageTheBestMovie() {
+export async function manageTheBestMovie(id) {
     let theBestMovieUrl = await getTheBestMovieUrl()
-    displayBestMovieInformation(theBestMovieUrl)
+    displayBestMovieInformation(theBestMovieUrl, id)
 }
 
 
@@ -51,14 +51,19 @@ function getTheBestMovieByVotes(listOfBestMovies){
 }
 
 
-async function displayBestMovieInformation(theBestMovieUrl){
-    let bestMovieTitle = document.getElementById("the-best-movie").getElementsByTagName("h1")[0]
-    let bestMovieResume = document.getElementById("the-best-movie").getElementsByTagName("p")[0]
-    let bestMovieImg = document.getElementById("the-best-movie-img")
+async function displayBestMovieInformation(theBestMovieUrl, id){
+    await createCarouselItemFromUrl(theBestMovieUrl, id)
 
+    let bestMovieTitle = document.getElementById("the-best-movie").getElementsByTagName("h1")[0]
+    let paragraph = document.createElement("p")
+    let button = document.createElement("button")
     let data = await fetchDataFromUrl(theBestMovieUrl)
 
-    bestMovieTitle.innerHTML = data.title
-    bestMovieResume.innerHTML = data.description
-    bestMovieImg.src = data.image_url  
+    bestMovieTitle.textContent = data.title
+    button.name = "play"
+    button.textContent = "Play"
+    paragraph.textContent = data.description
+
+    document.getElementById(id).appendChild(button)
+    document.getElementById(id).appendChild(paragraph)
 }
