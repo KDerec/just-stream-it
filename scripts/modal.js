@@ -5,7 +5,7 @@ export function createModalBox(data) {
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close">×</span>
-                    <h3>${data.title}</h3>
+                    <h2>${data.title}</h2>
                 </div>
                 <div class="modal-body">
                     <img src="${data.image_url}">
