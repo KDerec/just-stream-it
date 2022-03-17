@@ -5,29 +5,29 @@ export function createModalBox(data) {
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close">×</span>
-                    <h2>${data.title}</h2>
+                    <h3>${data.title}</h3>
                 </div>
                 <div class="modal-body">
                     <img src="${data.image_url}">
-                    <h3>Genre(s) :</h3>
+                    <h4>Genre(s) :</h4>
                     <ul class="genres-list"></ul>
-                    <h3>Date de sortie :</h3>
+                    <h4>Date de sortie :</h4>
                     <p> ${data.date_published}</p>
-                    <h3>Évaluation :</h3>
+                    <h4>Évaluation :</h4>
                     <p>${data.rated}</p>
-                    <h3>Score Imdb :</h3>
+                    <h4>Score Imdb :</h4>
                     <p>${data.imdb_score}</p>
-                    <h3>Réalisateur(s) :</h3>
+                    <h4>Réalisateur(s) :</h4>
                     <ul class="directors-list"></ul>
-                    <h3>Acteurs :</h3>
+                    <h4>Acteurs :</h4>
                     <ul class="actors-list"></ul>
-                    <h3>Durée :</h3>
+                    <h4>Durée :</h4>
                     <p>${data.duration} min</p>
-                    <h3>Pays :</h3>
+                    <h4>Pays :</h4>
                     <ul class="countries-list"></ul>
-                    <h3>Résultat au Box Office :</h3>
+                    <h4>Résultat au Box Office :</h4>
                     <p>${data.worldwide_gross_income} $</p>
-                    <h3>Résumé du film :</h3>
+                    <h4>Résumé du film :</h4>
                     <p>${data.long_description}</p>
                 </div>
             </div>

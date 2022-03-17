@@ -6,19 +6,22 @@
         <link rel="icon" type="image/png" href="https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png"/>
         <title>Just Stream it</title>
         <!-- <link rel="stylesheet" href="styles/normalize.css"> -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles/styles.css">
         <script type="module" src="scripts/main.js" async></script>
         <script src="scripts/buttons.js" async></script>
     </head>
     <body>
         <header id="header">
-            <nav>
-                <div id="logo">Just Stream It</div>
-                <ul id="header-items-list">
-                    <li class="header-item">Accueil</li>
-                    <li class="header-item">Catégories
-                        <ul id="header-genres-list"></ul>
-                    </li>
+            <nav id="navbar">
+                <div id="logo"><a href="/">Just Stream It</a></div>
+                <ul class="nav-links">
+                    <div class="menu">
+                        <li><a href="/">Accueil</a></li>
+                        <li class="genres">Catégories
+                            <ul id="header-genres-list"></ul>
+                        </li>
+                    </div>
                 </ul>
             </nav>
         </header>
