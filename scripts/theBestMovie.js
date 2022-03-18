@@ -136,8 +136,7 @@ async function displayBestMovieInformation(theBestMovieUrl, id){
     let data = await fetchDataFromUrl(theBestMovieUrl)
 
     bestMovieTitle.textContent = data.title
-    button.name = "play"
-    button.textContent = "Play"
+    button.className = "play-button"
     paragraph.textContent = data.description
 
     document.getElementById(id).appendChild(button)

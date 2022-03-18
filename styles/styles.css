@@ -13,6 +13,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
     font-size: 100%;
     font-family: 'Montserrat', sans-serif;
@@ -35,8 +36,9 @@ h1, h2, h3, h4, h5 {
   }
   
 h1 {
-margin-top: 0;
-font-size: var(--f39);
+    margin-top: 0px;
+    margin-bottom: 1rem;
+    font-size: var(--f39);
 }
 
 h2 {font-size: var(--f31);}
@@ -47,6 +49,32 @@ h4 {font-size: var(--f20);}
 
 a {text-decoration: none;}
 
+#others-best-movies {
+    clear: left;
+    padding-top: 1rem;
+}
+
+.play-button {
+    border: 0;
+    background: transparent;
+    box-sizing: border-box;
+    width: 0;
+    height: 74px;
+    border-color: transparent transparent transparent #ffffff;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 37px 0 37px 60px;
+    margin: 1rem;
+    transition: opacity 0.25s;
+    opacity: 0.5;
+}
+.play-button.paused {
+    border-style: double;
+    border-width: 0px 0 0px 60px;
+}
+.play-button:hover {
+    opacity: 1;
+}
 
 /* NAVBAR STYLING STARTS */
 #navbar {
@@ -61,7 +89,6 @@ a {text-decoration: none;}
 .nav-links a {
     color: #ffffff;
 }
-
 
 #logo {
     font-size: var(--f31);
@@ -89,7 +116,6 @@ a {text-decoration: none;}
     padding: 0.3rem;
 }
 
-
 #header-genres-list {
     background-color: #000000;
     margin-top: 5px;
@@ -107,13 +133,13 @@ a {text-decoration: none;}
 #header-genres-list li:hover {
     background-color: #F40612;
 }
+
 .genres:hover #header-genres-list {
     display: block;
 }
 
 
-
-
+/* CAROUSEL STYLING STARTS */
 .carousel {
     align-items: center;
     display: flex;
@@ -130,13 +156,13 @@ a {text-decoration: none;}
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     transition: transform .2s;
+    float: left;
 }
 
 .carousel-item:hover{
     transform: scale(1.1);
     cursor: pointer;
 }
-
 
 .carousel-button {
     background: #181818;
