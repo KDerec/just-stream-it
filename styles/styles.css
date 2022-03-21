@@ -215,21 +215,20 @@ a {text-decoration: none;}
 }
 
 .modal-body {
-    display: flex;
-    flex-wrap: wrap;
     padding: 1rem;
 }
 
 .modal-body ul {
     list-style: none;
-}
-
-.modal-body p {
-    margin-right: 1rem;
+    padding-left: 0.5rem;
 }
 
 .modal-body h4 {
     margin: 0;
+}
+
+.modal-body img {
+    float: right;
 }
 
 .close {
