@@ -1,9 +1,9 @@
 export async function managePlayButton() {
-    let playButton = document.getElementsByClassName("play-button")[0]
-    let playButtonClasses = playButton.classList
+    let playButton = document.getElementsByClassName("play-button")[0];
+    let playButtonClasses = playButton.classList;
     playButton.onclick = function () {
-        playButtonClasses.toggle("paused")
-    }
+        playButtonClasses.toggle("paused");
+    };
 }
 
 

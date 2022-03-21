@@ -32,29 +32,28 @@ export function createModalBox(data) {
                 </div>
             </div>
         </div>
-        `
+        `;
     
-    return content
+    return content;
 }
 
 export async function manageModalBox() {
-    var btn = document.querySelectorAll(".carousel-item");
+    var allCarouselItem = document.querySelectorAll(".carousel-item");
     var modals = document.querySelectorAll('.modal');
-    var spans = document.getElementsByClassName("close");
-    for (var i = 0; i < btn.length; i++) {
-        btn[i].onclick = function(e) {
-            e.preventDefault();
+    var closeButton = document.getElementsByClassName("close");
 
-            let modal = document.querySelector(e.target.getAttribute("href"));
+    for (let pas = 0; pas < allCarouselItem.length; pas++) {
+        allCarouselItem[pas].onclick = function(event) {
+            let modal = document.querySelector(event.target.getAttribute("href"));
             modal.style.display = "block";
-        }
+        };
     }
-    for (var i = 0; i < spans.length; i++) {
-        spans[i].onclick = function() {
+    for (let pas = 0; pas < closeButton.length; pas++) {
+        closeButton[pas].onclick = function() {
             for (var index in modals) {
                 if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
             }
-        }
+        };
     }
     window.onclick = function(event) {
         if (event.target.classList.contains('modal')) {
@@ -62,5 +61,5 @@ export async function manageModalBox() {
                 if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
             }
         }
-    }
+    };
 }
