@@ -4,36 +4,36 @@ import {createCarouselItemFromUrl} from './carousel.js';
 
 export async function manageTheBestMovie(id) {
     let theBestMovieUrl = await getTheBestMovieUrl();
-    displayBestMovieInformation(theBestMovieUrl, id);
+    createTheBestMovieInHtml(theBestMovieUrl, id);
 }
 
 
 export async function getTheBestMovieUrl() {
-    let bestOfAllMovieUrlPage = "http://localhost:8000/api/v1/titles/?year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=";
-    let UrlListOfBestMovies = await getUrlListOfThePage(bestOfAllMovieUrlPage);
-    UrlListOfBestMovies = await getUrlListOfBestMoviesByImdbScore(UrlListOfBestMovies);
-    if (UrlListOfBestMovies.length === 1){
-        let theBestMovieUrl = UrlListOfBestMovies[0].url;
+    let bestImdbScoreMovieUrlPage = "http://localhost:8000/api/v1/titles/?year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=";
+    let UrlArrayBestMovies = await getUrlArrayOfPage(bestImdbScoreMovieUrlPage);
+    UrlArrayBestMovies = await getUrlArrayOfBestMoviesByImdbScore(UrlArrayBestMovies);
+    if (UrlArrayBestMovies.length === 1){
+        let theBestMovieUrl = UrlArrayBestMovies[0].url;
 
         return theBestMovieUrl;
     }
     else {
-        UrlListOfBestMovies = await getUrlListOfBestMovieByAvgVote(UrlListOfBestMovies);
-        if (UrlListOfBestMovies.length === 1){
-            let theBestMovieUrl = UrlListOfBestMovies[0];
+        UrlArrayBestMovies = await getUrlArrayOfBestMovieByAvgVote(UrlArrayBestMovies);
+        if (UrlArrayBestMovies.length === 1){
+            let theBestMovieUrl = UrlArrayBestMovies[0];
 
             return theBestMovieUrl;
     
         } else {
-            UrlListOfBestMovies = await getUrlListOfBestMovieByVotes(UrlListOfBestMovies);
-            if (UrlListOfBestMovies.length === 1){
-                let theBestMovieUrl = UrlListOfBestMovies[0];
+            UrlArrayBestMovies = await getUrlArrayOfBestMovieByVotes(UrlArrayBestMovies);
+            if (UrlArrayBestMovies.length === 1){
+                let theBestMovieUrl = UrlArrayBestMovies[0];
         
                 return theBestMovieUrl;
         
             } else {
-                let rand = Math.floor(Math.random()*UrlListOfBestMovies.length);
-                let theBestMovieUrl = UrlListOfBestMovies[rand];
+                let rand = Math.floor(Math.random()*UrlArrayBestMovies.length);
+                let theBestMovieUrl = UrlArrayBestMovies[rand];
         
                 return theBestMovieUrl;
             }
@@ -42,92 +42,92 @@ export async function getTheBestMovieUrl() {
 }
 
 
-async function getUrlListOfThePage(url){
-    let UrlListOfBestMovies = [];
+async function getUrlArrayOfPage(url){
+    let UrlArrayBestMovies = [];
     let data = await fetchDataFromUrl(url);
     for(let pas = 0; pas < data.results.length; pas++){
-        UrlListOfBestMovies.push(data.results[pas].url);
+        UrlArrayBestMovies.push(data.results[pas].url);
     }
-    return UrlListOfBestMovies;
+    return UrlArrayBestMovies;
 }
 
 
-async function getUrlListOfBestMoviesByImdbScore(UrlListOfBestMovies){
+async function getUrlArrayOfBestMoviesByImdbScore(UrlArrayBestMovies){
     let maxImdbScore = -1;
-    let listOfBestMoviesByImdbScore = [];
-    for (let pas = 0; pas < UrlListOfBestMovies.length; pas++){
-        let data = await fetchDataFromUrl(UrlListOfBestMovies[pas]);
-        if (listOfBestMoviesByImdbScore.length === 0 & maxImdbScore === -1){
-            listOfBestMoviesByImdbScore.push(data.url);
+    let arrayOfBestMoviesByImdb = [];
+    for (let pas = 0; pas < UrlArrayBestMovies.length; pas++){
+        let data = await fetchDataFromUrl(UrlArrayBestMovies[pas]);
+        if (arrayOfBestMoviesByImdb.length === 0 & maxImdbScore === -1){
+            arrayOfBestMoviesByImdb.push(data.url);
             maxImdbScore = data.imdb_score;
         }
         if (maxImdbScore < data.imdb_score){
-            listOfBestMoviesByImdbScore = [];
-            listOfBestMoviesByImdbScore.push(data.url);
+            arrayOfBestMoviesByImdb = [];
+            arrayOfBestMoviesByImdb.push(data.url);
             maxImdbScore = data.imdb_score;
         }
         if (maxImdbScore === data.imdb_score){
-            listOfBestMoviesByImdbScore.push(data.url);
+            arrayOfBestMoviesByImdb.push(data.url);
         }
     }
 
-    listOfBestMoviesByImdbScore = [...new Set(listOfBestMoviesByImdbScore)];
+    arrayOfBestMoviesByImdb = [...new Set(arrayOfBestMoviesByImdb)];
 
-    return listOfBestMoviesByImdbScore;
+    return arrayOfBestMoviesByImdb;
 }
 
 
-async function getUrlListOfBestMovieByAvgVote(UrlListOfBestMovies){
+async function getUrlArrayOfBestMovieByAvgVote(UrlArrayBestMovies){
     let maxAvgVote = -1;
-    let listOfBestMoviesByAvg = [];
-    for (let pas = 0; pas < UrlListOfBestMovies.length; pas++){
-        let data = await fetchDataFromUrl(UrlListOfBestMovies[pas]);
-        if (listOfBestMoviesByAvg.length === 0 & maxAvgVote === -1){
-            listOfBestMoviesByAvg.push(data.url);
+    let arrayOfBestMoviesByAvg = [];
+    for (let pas = 0; pas < UrlArrayBestMovies.length; pas++){
+        let data = await fetchDataFromUrl(UrlArrayBestMovies[pas]);
+        if (arrayOfBestMoviesByAvg.length === 0 & maxAvgVote === -1){
+            arrayOfBestMoviesByAvg.push(data.url);
             maxAvgVote = data.avg_vote;
         }
         if (maxAvgVote < data.avg_vote){
-            listOfBestMoviesByAvg = [];
-            listOfBestMoviesByAvg.push(data.url);
+            arrayOfBestMoviesByAvg = [];
+            arrayOfBestMoviesByAvg.push(data.url);
             maxAvgVote = data.avg_vote;
         }
         if (maxAvgVote === data.avg_vote){
-            listOfBestMoviesByAvg.push(data.url);
+            arrayOfBestMoviesByAvg.push(data.url);
         }
     }
 
-    listOfBestMoviesByAvg = [...new Set(listOfBestMoviesByAvg)];
+    arrayOfBestMoviesByAvg = [...new Set(arrayOfBestMoviesByAvg)];
     
-    return listOfBestMoviesByAvg;
+    return arrayOfBestMoviesByAvg;
 }
 
 
-async function getUrlListOfBestMovieByVotes(UrlListOfBestMovies){
+async function getUrlArrayOfBestMovieByVotes(UrlArrayBestMovies){
     let maxVotes = -1;
-    let listOfBestMoviesByVotes = [];
-    for (let pas = 0; pas < UrlListOfBestMovies.length; pas++){
-        let data = await fetchDataFromUrl(UrlListOfBestMovies[pas]);
-        if (listOfBestMoviesByVotes.length === 0 & maxVotes === -1){
-            listOfBestMoviesByVotes.push(data.url);
+    let arrayOfBestMoviesByVotes = [];
+    for (let pas = 0; pas < UrlArrayBestMovies.length; pas++){
+        let data = await fetchDataFromUrl(UrlArrayBestMovies[pas]);
+        if (arrayOfBestMoviesByVotes.length === 0 & maxVotes === -1){
+            arrayOfBestMoviesByVotes.push(data.url);
             maxVotes = data.votes;
         }
         if (maxVotes < data.votes){
-            listOfBestMoviesByVotes = [];
-            listOfBestMoviesByVotes.push(data.url);
+            arrayOfBestMoviesByVotes = [];
+            arrayOfBestMoviesByVotes.push(data.url);
             maxVotes = data.votes;
         }
         if (maxVotes === data.votes){
-            listOfBestMoviesByVotes.push(data.url);
+            arrayOfBestMoviesByVotes.push(data.url);
         }
     }
 
-    listOfBestMoviesByVotes = [...new Set(listOfBestMoviesByVotes)];
+    arrayOfBestMoviesByVotes = [...new Set(arrayOfBestMoviesByVotes)];
 
-    return listOfBestMoviesByVotes;
+    return arrayOfBestMoviesByVotes;
 }
 
 
-async function displayBestMovieInformation(theBestMovieUrl, id){
+async function createTheBestMovieInHtml(theBestMovieUrl, id){
     await createCarouselItemFromUrl(theBestMovieUrl, id);
 
     let bestMovieTitle = document.getElementById("the-best-movie").getElementsByTagName("h1")[0];
@@ -136,8 +136,8 @@ async function displayBestMovieInformation(theBestMovieUrl, id){
     let data = await fetchDataFromUrl(theBestMovieUrl);
 
     bestMovieTitle.textContent = data.title;
-    button.className = "play-button";
     paragraph.textContent = data.description;
+    button.className = "play-button";
 
     document.getElementById(id).appendChild(button);
     document.getElementById(id).appendChild(paragraph);

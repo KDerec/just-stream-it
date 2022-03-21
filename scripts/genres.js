@@ -1,39 +1,39 @@
 import {fetchDataFromUrl} from './dataFetcher.js';
 
 
-const genreList = [];
+const genreArray = [];
 
 
-export async function manageGenre(url) {
-    await getAllGenreNameOfThePage(url);
-    await getNextPageOfGenreList(url);
-    appendAllGenreInHtml();
-}
-
-
-async function getNextPageOfGenreList(url) {
+export async function manageGenre(url){
     let data = await fetchDataFromUrl(url);
-    
-    if (data.next){
-        await getAllGenreNameOfThePage(data.next);
-        await getNextPageOfGenreList(data.next);
+
+    pushAllGenreNameOfPageInArray(data);
+
+    if (nextUrlPageExist(data)){
+        await manageGenre(data.next);
+    } else {
+        createGenreArrayInHtml();
     }
 }
 
 
-async function getAllGenreNameOfThePage(url){
-    let data = await fetchDataFromUrl(url);
-
+function pushAllGenreNameOfPageInArray(data){
     for (let pas = 0; pas < data.results.length; pas++){
-        genreList.push(data.results[pas].name);
+        genreArray.push(data.results[pas].name);
+    }
+}
+
+function nextUrlPageExist(data){
+    if (data.next){
+        return true;
     }
 }
 
 
-function appendAllGenreInHtml(){
-    for (let pas = 0; pas < genreList.length; pas++){
+function createGenreArrayInHtml(){
+    for (let pas = 0; pas < genreArray.length; pas++){
         let node = document.createElement("li");
-        let textNode = document.createTextNode(genreList[pas]);
+        let textNode = document.createTextNode(genreArray[pas]);
         node.appendChild(textNode);
         document.getElementById("header-genres-list").appendChild(node);
     }

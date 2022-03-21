@@ -4,51 +4,51 @@ import {fetchDataFromUrl} from './dataFetcher.js';
 
 
 export async function manageTopOfBestMovies(url, carouselId) {
-    var urlListOfTopSevenBestMovies = [];
+    var urlArrayOfTopSevenBestMovies = [];
     let data = await fetchDataFromUrl(url);
 
-    urlListOfTopSevenBestMovies = await getUrlListOfTopOfBestMovies(data, urlListOfTopSevenBestMovies);
-    urlListOfTopSevenBestMovies = await deleteTheBestMovieFromTopOfBestMovies(urlListOfTopSevenBestMovies);
-    if (urlListOfTopSevenBestMovies.length >= 7){
+    urlArrayOfTopSevenBestMovies = await getUrlArrayOfTopBestMovies(data, urlArrayOfTopSevenBestMovies);
+    urlArrayOfTopSevenBestMovies = await deleteTheBestMovieFromTopBestMovies(urlArrayOfTopSevenBestMovies);
+    if (urlArrayOfTopSevenBestMovies.length >= 7){
         for (let pas = 0; pas < 7; pas++){
-            await createCarouselItemFromUrl(urlListOfTopSevenBestMovies[pas], carouselId);
+            await createCarouselItemFromUrl(urlArrayOfTopSevenBestMovies[pas], carouselId);
         }
     }
     else {
-        for (let pas = 0; pas < urlListOfTopSevenBestMovies.length; pas++){
-            await createCarouselItemFromUrl(urlListOfTopSevenBestMovies[pas], carouselId);
+        for (let pas = 0; pas < urlArrayOfTopSevenBestMovies.length; pas++){
+            await createCarouselItemFromUrl(urlArrayOfTopSevenBestMovies[pas], carouselId);
         }
     }
 }
 
 
-async function getUrlListOfTopOfBestMovies(data, urlListOfTopSevenBestMovies) {
+async function getUrlArrayOfTopBestMovies(data, urlArrayOfTopSevenBestMovies) {
     for (let pas = 0; pas < data.results.length; pas++){
-        urlListOfTopSevenBestMovies.push(data.results[pas].url);
+        urlArrayOfTopSevenBestMovies.push(data.results[pas].url);
     }
     
     if (data.next !== null){
-        await checkIfUrlListIsBigEnough(data, urlListOfTopSevenBestMovies);
+        await checkIfUrlArrayIsBigEnough(data, urlArrayOfTopSevenBestMovies);
     }
 
-    return urlListOfTopSevenBestMovies;
+    return urlArrayOfTopSevenBestMovies;
 }
 
 
-async function checkIfUrlListIsBigEnough(data, urlListOfTopSevenBestMovies) {
-    if (urlListOfTopSevenBestMovies.length < 7){
+async function checkIfUrlArrayIsBigEnough(data, urlArrayOfTopSevenBestMovies) {
+    if (urlArrayOfTopSevenBestMovies.length < 7){
         let next_page_data = await fetchDataFromUrl(data.next);
-        await getUrlListOfTopOfBestMovies(next_page_data, urlListOfTopSevenBestMovies);
+        await getUrlArrayOfTopBestMovies(next_page_data, urlArrayOfTopSevenBestMovies);
     }
 }
 
 
-async function deleteTheBestMovieFromTopOfBestMovies(urlListOfTopSevenBestMovies) {
+async function deleteTheBestMovieFromTopBestMovies(urlArrayOfTopSevenBestMovies) {
     let theBestMovieUrl = await getTheBestMovieUrl();
-    let BestMovieIndex = urlListOfTopSevenBestMovies.indexOf(theBestMovieUrl);
-    if (BestMovieIndex !== -1){
-        urlListOfTopSevenBestMovies.splice(BestMovieIndex, 1);
+    let theBestMovieIndex = urlArrayOfTopSevenBestMovies.indexOf(theBestMovieUrl);
+    if (theBestMovieIndex !== -1){
+        urlArrayOfTopSevenBestMovies.splice(theBestMovieIndex, 1);
     }
 
-    return urlListOfTopSevenBestMovies;
+    return urlArrayOfTopSevenBestMovies;
 }

@@ -1,5 +1,5 @@
 export function createModalBox(data) {
-    content = `
+    let content = `
         <img src="${data.image_url}" class="carousel-item", href="${'#x' + data.id}">
         <div id=${'x' + data.id} class="modal">
             <div class="modal-content">
