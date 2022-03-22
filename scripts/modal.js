@@ -1,4 +1,10 @@
 export function createModalBox(data) {
+    let boxOfficeResult = data.worldwide_gross_income
+    if(boxOfficeResult === null){
+        boxOfficeResult = "Le résultat est inconnu."
+    } else {
+        boxOfficeResult = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(boxOfficeResult)
+    }
     let content = `
         <img src="${data.image_url}" class="carousel-item", href="${'#x' + data.id}">
         <div id=${'x' + data.id} class="modal">
@@ -26,7 +32,7 @@ export function createModalBox(data) {
                     <h4>Pays :</h4>
                     <ul class="countries-list"></ul>
                     <h4>Résultat au Box Office :</h4>
-                    <p>${data.worldwide_gross_income} $</p>
+                    <p>${boxOfficeResult}</p>
                     <h4>Résumé du film :</h4>
                     <p>${data.long_description}</p>
                 </div>
