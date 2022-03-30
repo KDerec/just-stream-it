@@ -1,10 +1,10 @@
 import {fetchDataFromUrl} from './dataFetcher.js';
-import {createModalBox} from './modal.js';
+import {createImgAndModalBox} from './modal.js';
 
 export async function createCarouselItemFromUrl(url, carouselId) {
     let data = await fetchDataFromUrl(url);
     let node = document.createElement("li");
-    let content = createModalBox(data);
+    let content = createImgAndModalBox(data);
 
     node.innerHTML = content;
 

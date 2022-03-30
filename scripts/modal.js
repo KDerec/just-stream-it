@@ -1,9 +1,9 @@
-export function createModalBox(data) {
-    let boxOfficeResult = data.worldwide_gross_income
+export function createImgAndModalBox(data) {
+    let boxOfficeResult = data.worldwide_gross_income;
     if(boxOfficeResult === null){
-        boxOfficeResult = "Le résultat est inconnu."
+        boxOfficeResult = "Le résultat est inconnu.";
     } else {
-        boxOfficeResult = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(boxOfficeResult)
+        boxOfficeResult = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(boxOfficeResult);
     }
     let content = `
         <img src="${data.image_url}" class="carousel-item", href="${'#x' + data.id}">
@@ -49,22 +49,26 @@ export async function manageModalBox() {
     var closeButton = document.getElementsByClassName("close");
 
     for (let pas = 0; pas < allCarouselItem.length; pas++) {
-        allCarouselItem[pas].onclick = function(event) {
-            let modal = document.querySelector(event.target.getAttribute("href"));
+        allCarouselItem[pas].onclick = function(pointerEvent) {
+            let modal = document.querySelector(pointerEvent.target.getAttribute("href"));
             modal.style.display = "block";
         };
     }
     for (let pas = 0; pas < closeButton.length; pas++) {
         closeButton[pas].onclick = function() {
             for (var index in modals) {
-                if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-            }
+                if (typeof modals[index].style !== 'undefined'){
+                    modals[index].style.display = "none";
+                }
+            }   
         };
     }
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
+    window.onclick = function(pointerEvent) {
+        if (pointerEvent.target.classList.contains('modal')) {
             for (var index in modals) {
-                if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+                if (typeof modals[index].style !== 'undefined'){
+                    modals[index].style.display = "none";
+                }
             }
         }
     };

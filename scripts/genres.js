@@ -12,7 +12,7 @@ export async function manageGenre(url){
     if (nextUrlPageExist(data)){
         await manageGenre(data.next);
     } else {
-        createGenreArrayInHtml();
+        createGenreListElementInHtml();
     }
 }
 
@@ -30,7 +30,7 @@ function nextUrlPageExist(data){
 }
 
 
-function createGenreArrayInHtml(){
+function createGenreListElementInHtml(){
     for (let pas = 0; pas < genreArray.length; pas++){
         let node = document.createElement("li");
         let textNode = document.createTextNode(genreArray[pas]);

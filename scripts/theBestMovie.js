@@ -10,7 +10,7 @@ export async function manageTheBestMovie(id) {
 
 export async function getTheBestMovieUrl() {
     let bestImdbScoreMovieUrlPage = "http://localhost:8000/api/v1/titles/?year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=";
-    let UrlArrayBestMovies = await getUrlArrayOfPage(bestImdbScoreMovieUrlPage);
+    let UrlArrayBestMovies = await getUrlArrayOfMovieOfPage(bestImdbScoreMovieUrlPage);
     UrlArrayBestMovies = await getUrlArrayOfBestMoviesByImdbScore(UrlArrayBestMovies);
     if (UrlArrayBestMovies.length === 1){
         let theBestMovieUrl = UrlArrayBestMovies[0].url;
@@ -42,7 +42,7 @@ export async function getTheBestMovieUrl() {
 }
 
 
-async function getUrlArrayOfPage(url){
+async function getUrlArrayOfMovieOfPage(url){
     let UrlArrayBestMovies = [];
     let data = await fetchDataFromUrl(url);
     for(let pas = 0; pas < data.results.length; pas++){
