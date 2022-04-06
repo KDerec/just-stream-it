@@ -3,14 +3,15 @@ export function createImgAndModalBox(data) {
     if(boxOfficeResult === null){
         boxOfficeResult = "Le résultat est inconnu.";
     } else {
-        boxOfficeResult = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(boxOfficeResult);
+        boxOfficeResult = new Intl.NumberFormat('en-US', 
+        { style: 'currency', currency: 'USD' }).format(boxOfficeResult);
     }
     let content = `
         <img src="${data.image_url}" class="carousel-item", href="${'#x' + data.id}">
         <div id=${'x' + data.id} class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="close">×</span>
+                    <span class="close">&times;</span>
                     <h2>${data.title}</h2>
                 </div>
                 <div class="modal-body">

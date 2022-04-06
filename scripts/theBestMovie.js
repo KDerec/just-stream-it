@@ -130,7 +130,7 @@ async function getUrlArrayOfBestMovieByVotes(UrlArrayBestMovies){
 async function createTheBestMovieInHtml(theBestMovieUrl, id){
     await createCarouselItemFromUrl(theBestMovieUrl, id);
 
-    let bestMovieTitle = document.getElementById("the-best-movie").getElementsByTagName("h1")[0];
+    let bestMovieTitle = document.getElementById(id).getElementsByTagName("h1")[0];
     let paragraph = document.createElement("p");
     let button = document.createElement("button");
     let data = await fetchDataFromUrl(theBestMovieUrl);
