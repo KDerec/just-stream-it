@@ -3,12 +3,12 @@
 
 <!-- PROJECT LOGO -->
 <div align="center">
-  <a href="https://github.com/KDerec/chesstournamentmanager/blob/master/images/logo.png"><img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/KDerec/just-stream-it/blob/master/images/logo.png"><img src="images/logo.png" alt="Logo" width="100" height="80">
   </a>
 
 <h3 align="center">Frontend website</h3>
   <p align="center">
-    This student project is the #3 of my training.<br>You can follow the pevious <a href="https://github.com/KDerec/chesstournamentmanager">here</a> and next one <a href="https://github.com/KDerec/algo-invest-trade">here</a>.
+    This student project is the #4 of my training.<br>You can follow the previous <a href="https://github.com/KDerec/chesstournamentmanager">here</a> and next one <a href="https://github.com/KDerec/algo-invest-trade">here</a>.
   </p>
 </div>
 
@@ -56,9 +56,9 @@ Click on a movie image and a modal box show you :
 
 
 ### Built With
-* [HTML] (https://developer.mozilla.org/fr/docs/Web/HTML)
-* [CSS] (https://developer.mozilla.org/fr/docs/Web/CSS) 
-* [JS Vanilla] (https://developer.mozilla.org/fr/docs/Web/JavaScript)
+* [HTML](https://developer.mozilla.org/fr/docs/Web/HTML)
+* [CSS](https://developer.mozilla.org/fr/docs/Web/CSS) 
+* [JS Vanilla](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 * [Python](https://www.python.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -123,4 +123,4 @@ Project Link: [https://github.com/KDerec/just-stream-it](https://github.com/KDer
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-<i>This student project is the #3 of my training.<br>You can follow the pevious <a href="https://github.com/KDerec/chesstournamentmanager">here</a> and next one <a href="https://github.com/KDerec/algo-invest-trade">here</a>.</i>
+<i>This student project is the #4 of my training.<br>You can follow the previous <a href="https://github.com/KDerec/chesstournamentmanager">here</a> and next one <a href="https://github.com/KDerec/algo-invest-trade">here</a>.</i>
