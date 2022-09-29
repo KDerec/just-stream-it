@@ -28,9 +28,12 @@
 ### 🌱 Developed skills
 - Develop the <b>Front-end</b> of an application with <b>HTML</b>, <b>CSS</b> and <b>JavaScript</b>.
 - Interact with a <b>REST API</b>.
-### 🚀 Project goal
-Create a <b>website</b> connected with [OCMovies-<b>API</b>](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR) to display the <b>best movies</b> of a catalogue.  
-
+### 📖 Scenario
+The association **JustStreamIt** is known for its **newsletters ranking films**, but the principle of newsletters is beginning to **show its limits**, so the association wants to have a **web application** to view in real time a ranking of interesting films.  
+So I decide to offer my services to Camille, the CEO and she responded favorably 🎉.
+### 🚧 Project goal
+Create a <b>website</b> connected with [OCMovies-<b>API</b>](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR) to display the <b>best movies</b> of a catalogue.
+### 🚀 Deliverable
 <a href="https://github.com/KDerec/just-stream-it/blob/master/images/website.gif"><img src="images/website.gif" alt="website-usage-gif"></a>
 
 ### What is displayed?
